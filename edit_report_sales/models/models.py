@@ -15,8 +15,9 @@ class ReportSaleDetails(models.AbstractModel):
                 rec_product=self.env['product.product'].sudo().search([('id','=',product.get('product_id',False))],limit=1)
                 product['brand']=rec_product.categ_id.name
                 product['tax']='14%'
-                product['tax_amount']=round(product.get('price_unit',0)*0.14,2)
-                product['total_amount']=round((product.get('price_unit',0)+product.get('tax_amount',0))*product.get('quantity',0),2)
+                product['tax_amount']=round(product.get('price_unit',0)*0.14/1.14,2)
+                product['total_amount']=round(product.get('price_unit',0),2)
+                product['price_unit']=round((product.get('price_unit',0)-product.get('tax_amount',0)),2)
 
                 new_products.append(product)
         res['products']=new_products
