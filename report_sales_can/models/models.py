@@ -54,7 +54,7 @@ class GeneralLedgerAccount(models.AbstractModel):
             sheet.write(row, 2, 'FROM : ' + str(obj.date_from), format0)
             sheet.write(row, 5, 'TO : ' + str(obj.date_to), format0)
             row += 1
-            sheet.write(row, 0, 'Row labels', format1)
+            sheet.write(row, 0, 'Designer', format1)
             sheet.write(row, 1, 'Sum', format1)
             sheet.write(row, 2, 'Designer Share', format1)
             sheet.write(row, 3, 'I/S Share', format1)
@@ -72,7 +72,7 @@ class GeneralLedgerAccount(models.AbstractModel):
                 lines=self.env['pos.order.line'].search([('product_id','in',products.ids),('order_id','in',orders.ids)])
                 total=0
                 for line in lines:
-                    total+=line.price_subtotal_incl
+                    total+=line.price_subtotal
                 if total>0:
                     row += 1
                     sheet.write(row, 0, str(category.name), format2)
