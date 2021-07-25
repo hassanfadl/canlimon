@@ -1,5 +1,7 @@
 # -*- coding: utf-8 -*-
 from odoo import http
+from odoo.http import request, Response
+
 
 
 class Test(http.Controller):
@@ -13,7 +15,7 @@ class Test(http.Controller):
         #
         #      }}"""
         if kw.get('name', False):
-            product=self.env['product.template'].sudo().search([('name','=',kw.get('name', False))])
+            product=request.env['product.template'].sudo().search([('name','=',kw.get('name', False))])
             if kw.get('price', 0) == product.list_price:
                 return False
             else:
