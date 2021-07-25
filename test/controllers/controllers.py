@@ -15,11 +15,12 @@ class Test(http.Controller):
         #
         #      }}"""
         if kw.get('name', False):
-            product=request.env['product.template'].sudo().search([('name','=like',kw.get('name', False))])
+            product=request.env['product.template'].sudo().search([('name','=',kw.get('name', False))])
             if product:
-                if kw.get('price', 0) == product.list_price:
+                if kw.get('price') == product.list_price:
                     return [False,product.name]
                 else:
+                    product.list_price=kw.get('price')
                     return [True,product.name]
             else:
                 return ["not Found",product.name]
