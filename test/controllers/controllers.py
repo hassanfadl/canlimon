@@ -4,7 +4,7 @@ from odoo import http
 
 class Test(http.Controller):
 
-    @http.route('/test', auth='public')
+    @http.route('/test',type='json', methods=['POST'], auth='public', sitemap=False)
     def index(self, **kw):
         # """ {
         #      "params": {
