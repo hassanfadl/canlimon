@@ -16,10 +16,13 @@ class Test(http.Controller):
         #      }}"""
         if kw.get('name', False):
             product=request.env['product.template'].sudo().search([('name','=',kw.get('name', False))])
-            if kw.get('price', 0) == product.list_price:
-                return False
+            if product:
+                if kw.get('price', 0) == product.list_price:
+                    return False
+                else:
+                    return True
             else:
-                return True
+                return "not Found"
 
 
 
