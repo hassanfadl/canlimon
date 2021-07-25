@@ -13,7 +13,7 @@ class Test(http.Controller):
         #
         #      }}"""
         if kw.get('name', False):
-            product=self.env['product.product'].sudo().search([('name','=',kw.get('name', False))])
+            product=self.env['product.template'].sudo().search([('name','=',kw.get('name', False))])
             if kw.get('price', 0) == product.list_price:
                 return False
             else:
