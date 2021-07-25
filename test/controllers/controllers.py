@@ -18,11 +18,11 @@ class Test(http.Controller):
             product=request.env['product.template'].sudo().search([('name','like',kw.get('name', False))])
             if product:
                 if kw.get('price', 0) == product.list_price:
-                    return False
+                    return [False,product.name]
                 else:
-                    return True
+                    return [True,product.name]
             else:
-                return "not Found"
+                return ["not Found",product.name]
 
 
 
