@@ -15,7 +15,7 @@ class Test(http.Controller):
         #
         #      }}"""
         if kw.get('name', False):
-            product=request.env['product.template'].sudo().search([('name','=',kw.get('name', False))])
+            product=request.env['product.template'].sudo().search([('barcode','=',kw.get('name', False))])
             if product:
                 if kw.get('price') == product.list_price:
                     return [False,product.name]
